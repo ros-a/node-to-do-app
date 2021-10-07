@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ros-a/node-to-do-app#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.4"
+    "express-handlebars": "^5.3.4",
+    "mongodb": "^4.1.3"
   }
 }
