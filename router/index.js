@@ -37,7 +37,7 @@ function router(app) {
         })
     })
 
-    app.post('/surrealist-cinema/delete-film/', (request, response) => {
+    app.put('/surrealist-cinema/delete-film/', (request, response) => {
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
             let idString = request.body.id
             let oid = ObjectId(idString)

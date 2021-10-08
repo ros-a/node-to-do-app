@@ -3,6 +3,10 @@ document.querySelector('#add-film-plus-icon').addEventListener('click', () => {
     document.querySelector('#add-film-plus-icon').style.visibility = 'hidden'
 })
 
+window.addEventListener('load', (event) => {
+    let numberOfQuotes = document.querySelectorAll('.quote').length
+    getRandomQuote(numberOfQuotes)
+})
 
 document.querySelector('#submit').addEventListener('click', e => {
     e.preventDefault()
@@ -38,10 +42,21 @@ async function postFilm(filmObject) {
 
 async function deleteFilm(id) {
     fetch('/surrealist-cinema/delete-film/', {
-        method: 'POST',
+        method: 'PUT',
         body: JSON.stringify(id),
         headers: {
             'Content-Type': 'application/json'
         }
     })
 }
+
+function getRandomQuote(numberOfQuotes) {
+    let allQuotes = document.querySelectorAll('.quote')
+    let randomNumber = Math.floor(Math.random() * numberOfQuotes)
+    let quoteElem = allQuotes[randomNumber]
+    let quoteTitle = quoteElem.dataset.title
+    document.querySelector('#random-quote').innerHTML = quoteElem.innerHTML
+    document.querySelector('#random-quote-title').innerHTML = quoteTitle
+
+}
+

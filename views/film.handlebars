@@ -1,11 +1,21 @@
+<div id="quote-container">
+    <p id="random-quote"></p>
+    <p id="random-quote-title"></p>
+</div>
+
+<section class="film-lists">
+<h1>surrealist cinema</h1>
+
 <h2>films seen</h2>
 {{#each filmsSeen}}
             <div>
-                <p>{{title}}</p>
+                <p class="title">{{title}}</p>
                 <p>{{director}}</p>
                 <p>{{music}}</p>
                 <p>{{year}}</p>
-                <p>{{quote}}</p>
+                {{#each quotes}}
+                    <p class="quote" data-title="{{../title}}">{{this}}</p>
+                {{/each}}
             </div>
             <button class="delete" data-id="{{_id}}">delete</button>
 {{/each}}
@@ -17,7 +27,9 @@
                 <p>{{director}}</p>
                 <p>{{music}}</p>
                 <p>{{year}}</p>
-                <p>{{quote}}</p>
+                {{#each quotes}}
+                    <p class="quote" data-title="{{../title}}">{{this}}</p>
+                {{/each}}
             </div>
             <button class="delete" data-id="{{_id}}">delete</button>
 {{/each}}
