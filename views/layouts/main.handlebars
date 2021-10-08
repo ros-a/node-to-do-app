@@ -1,9 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/styles.css">
+    <script defer src="/script.js"></script>
 </head>
 <body>
+    <section class="film-lists">
+    <h1>surrealist cinema</h1>
     {{{body}}}
+    </section>
+    <section class="add-film">
+        <h2>add a film</h2>
+            <div id="add-film-plus-icon">+</div>
+            <form>
+                <label for="title">Film title:</label>
+                <input type="text" id="title" name="title">
+                <label for="director">Director:</label>
+                <input type="text" id="director" name="director">
+                <label for="music">Music by:</label>
+                <input type="text" id="music" name="music">
+                <label for="year">Year:</label>
+                <input type="text" id="year" name="year">
+                <label for="gender">Have you seen this film?</label>
+                <input type="radio" name="seen" value="true" checked="checked">yes</input>
+                <input type="radio" name="seen" value="false">no</input>
+                <label for="quote">Favourite quote:</label>
+                <input type="text" id="quote" name="quote">
+                <button type="submit" id="submit">submit</button>
+            </form>
+    </div>
 </body>
 </html>

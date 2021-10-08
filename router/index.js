@@ -9,12 +9,42 @@ const mongoSettings = {
 
 function router(app) {
 
-    app.get('/to-do-app/', (request, response) => {
+    app.get('/surrealist-cinema/', (request, response) => {
         MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
-            const db = client.db('node-to-do-app')
-            const taskCollection = db.collection('to-do-tasks')
-            const tasks = await taskCollection.find({}).toArray()
-            response.render('task', {tasks})
+            const db = client.db('surrealist-cinema')
+            const filmCollection = db.collection('surrealist-films')
+            const filmsSeen = await filmCollection.find({deleted: false, seen: true}).toArray()
+            const filmsNotSeen = await filmCollection.find({deleted: false, seen: false}).toArray()
+            response.render('film', {filmsSeen, filmsNotSeen})
+        })
+    })
+
+    app.post('/surrealist-cinema/add-film/', (request, response) => {
+        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+            let filmObject = {
+                title: request.body.title,
+                director: request.body.director,
+                music: request.body.music,
+                year: request.body.year,
+                seen: request.body.seen,
+                quote: request.body.quote,
+                deleted: false
+            }
+            const db = client.db('surrealist-cinema')
+            const filmCollection = await db.collection('surrealist-films')
+            const result = await filmCollection.insertOne(filmObject)
+            return response.sendStatus('200')
+        })
+    })
+
+    app.post('/surrealist-cinema/delete-film/', (request, response) => {
+        MongoClient.connect(mongoUrl, mongoSettings, async (error, client) => {
+            let idString = request.body.id
+            let oid = ObjectId(idString)
+            const db = client.db('surrealist-cinema')
+            const filmCollection = await db.collection('surrealist-films')
+            const result = await filmCollection.updateOne({_id: oid}, {$set: {deleted: true}})
+            return response.sendStatus('200')
         })
     })
 

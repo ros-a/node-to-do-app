@@ -1,0 +1,24 @@
+<h2>films seen</h2>
+{{#each filmsSeen}}
+            <div>
+                <p>{{title}}</p>
+                <p>{{director}}</p>
+                <p>{{music}}</p>
+                <p>{{year}}</p>
+                <p>{{quote}}</p>
+            </div>
+            <button class="delete" data-id="{{_id}}">delete</button>
+{{/each}}
+
+<h2>films yet to see</h2>
+{{#each filmsNotSeen}}
+            <div>
+                <p>{{title}}</p>
+                <p>{{director}}</p>
+                <p>{{music}}</p>
+                <p>{{year}}</p>
+                <p>{{quote}}</p>
+            </div>
+            <button class="delete" data-id="{{_id}}">delete</button>
+{{/each}}
+

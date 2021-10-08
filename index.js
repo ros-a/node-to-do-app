@@ -15,9 +15,9 @@ const app = express()
 const port = 3000
 
 app.use(express.json())
-app.use(express.static('public'))
 app.engine('handlebars', expressHandlebars())
 app.set('view engine', 'handlebars')
+app.use(express.static('public'))
 
 router(app)
 
